@@ -1,9 +1,0 @@
-@import url('conponents/navbar.css');
-@import url('conponents/hero.css');
-@import url('conponents/portfolio.css');
-
-
-body {
-  background-color: white;
-  max-width: 1500px;
-}
