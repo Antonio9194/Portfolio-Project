@@ -38,11 +38,10 @@
   document.getElementById('owner-link').addEventListener('click', function(event) {
     event.preventDefault(); // stop default link action
     
-    const password = prompt('Please enter the owner password:');
+    const password = prompt('Password:');
     const correctPassword = 'Marvelous91';
     
     if (password === correctPassword) {
-      // Password is correct, redirect to ownerPage.html
       window.location.href = './ownerPage.html';
     } else {
       alert('Sorry, wrong password!');
