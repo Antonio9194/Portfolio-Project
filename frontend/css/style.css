@@ -3,13 +3,31 @@
 @import url('conponents/portfolio.css');
 @import url('conponents/about.css');
 @import url('conponents//footer.css');
+@import url('conponents/login.css');
 
-
-body {
-  background-color: white;
-  max-width: 1500px;
+/* Global layout settings */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-html {
+/* Let content grow and footer stick to bottom */
+body {
+  flex: 1;
   scroll-behavior: smooth;
+  background-color: white;
+}
+
+/* Optional: Wrap content in a centered container */
+.container {
+  max-width: 1500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Footer should push down */
+body > footer {
+  margin-top: auto;
 }

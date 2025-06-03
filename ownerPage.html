@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // If the user came here without a referrer (typed URL manually or opened bookmark)
+    if (document.referrer === "") {
+      // Redirect to login page
+      window.location.href = './loginPage.html'; // adjust path to your login page
+    }
+  </script>
+</body>
+
+</html>

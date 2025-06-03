@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,59 +12,19 @@
   <link rel="icon" type="image/png" href="./smoke.png" />
   <title>Antonio Vinciguerra Portfolio</title>
 </head>
-
 <body>
   <header>
     <nav class="navbar">
       <h1>Antonio's Portfolio</h1>
-      <a href="#hero">Home</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#about">About</a>
-      <a href="#footer">Links</a>
     </nav>
   </header>
-  <main>
-    <section id="hero">
-      <div class="hero">
-        <h2>Hey, I'm Antonio 👋</h2>
-        <h5>Full Stack Web Developer based in Tokyo.</h5>
-        <h5>Crafting clean, functional and elegant web experiences.</h5>
-        </p>
-        <a href="#portfolio" class="cta-button">View My Work</a>
-      </div>
-    </section>
-    <section id="portfolio">
-      <div class="portfolio" class="container my-5">
-        <h2>Projects</h2>
-        <div class="row text-center">
-          <div class="col-md p-4 mb-4 rounded shadow-sm" style="background-color: #f9fbfd; border: 2px solid #97b7d7;">
-            <h4 style="color: #333;">Title</h4>
-          </div>
-          <div class="col-md p-4 mb-4 rounded shadow-sm" style="background-color: #f9fbfd; border: 2px solid #97b7d7;">
-            <h4 style="color: #333;">Description</h4>
-          </div>
-          <div class="col-md p-4 mb-4 rounded shadow-sm" style="background-color: #f9fbfd; border: 2px solid #97b7d7;">
-            <h4 style="color: #333;">Link</h4>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="about">
-      <div class="about">
-        <img src="./images/avatar.jpg" alt="avatar picture">
-        <h3>About Me</h3>
-        <hr>
-        <h4>Born and raised in Italy.</h4>
-        <h4>Lived between China and Japan for over 8 years.</h4>
-        <h4>Used to work in hospitality then swithed to programming.</h4>
-        <h3>Hobbies</h3>
-        <ul>
-          <li><i class="fa-solid fa-gamepad"></i> Gaming</li>
-          <li><i class="fa-solid fa-dragon"></i> Anime</li>
-          <li><i class="fa-solid fa-code"></i> Coding</li>
-        </ul>    </section>
-  </main>
-  <footer id="footer">
+  <section id="login">
+    <div class="login">
+      <a href="./ownerPage.html" id="owner-link">Owner</a>
+      <a href="./guestPage.html">Guest</a>
+    </div>
+  </section>
+   <footer id="footer">
     <div class="footer">
       <p>| &copy; 2025 Antonio |</p>
         <a href="https://github.com/Antonio9194" target="_blank">
@@ -75,7 +34,20 @@
           <i class="fa-brands fa-linkedin"></i>
         </a>
     </div>
-
+    <script>
+  document.getElementById('owner-link').addEventListener('click', function(event) {
+    event.preventDefault(); // stop default link action
+    
+    const password = prompt('Please enter the owner password:');
+    const correctPassword = 'Marvelous91';
+    
+    if (password === correctPassword) {
+      // Password is correct, redirect to ownerPage.html
+      window.location.href = './ownerPage.html';
+    } else {
+      alert('Sorry, wrong password!');
+    }
+  });
+</script>
 </body>
-
 </html>
