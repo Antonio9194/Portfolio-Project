@@ -8,6 +8,7 @@
   width: 1200px;
   margin: 50px;
   padding: 20px;
+  border: 1px solid #97b7d7;
   border-radius: 10px;
   box-shadow: 0 10px 25px -5px #97b7d7;
 }
