@@ -4,6 +4,8 @@ require 'securerandom'
 require 'sinatra'
 require 'json'
 
+enable :sessions
+
 set :public_folder, File.expand_path('../public', __FILE__)
 set :views, File.expand_path('views', __dir__)
 
@@ -14,11 +16,30 @@ get '/' do
   erb :index
 end
 
+get '/set_guest' do
+  session[:allowed_guest] = true
+  redirect '/guest'
+end
+
 get '/guest' do
-  erb :guest
+  if session[:allowed_guest]
+    erb :guest
+  else
+    redirect '/'
+  end
+end
+
+post '/login' do
+  if params[:password] == 'Marvelous91'
+    session[:authorized] = true
+    redirect '/owner'
+  else
+    redirect '/'
+  end
 end
 
 get '/owner' do
+  redirect '/' unless session[:authorized]
   erb :owner
 end
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,6 +13,7 @@
   <link rel="icon" type="image/png" href="/images/smoke.png" />
   <title>Antonio Vinciguerra Portfolio</title>
 </head>
+
 <body>
   <header>
     <nav class="navbar">
@@ -20,33 +22,37 @@
   </header>
   <section id="login">
     <div class="login">
-      <a href="/owner" id="owner-link">Owner</a>
-      <a href="/guest">Guest</a>
+      <form action="/login" method="POST" style="display: inline;">
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Owner</button>
+      </form>
+      <a href="/set_guest">Guest</a>
     </div>
   </section>
-   <footer id="footer">
+  <footer id="footer">
     <div class="footer">
       <p>&copy; 2025 | Antonio |</p>
-        <a href="https://github.com/Antonio9194" target="_blank">
-          <i class="fa-brands fa-github-alt"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/vinciguerra-antonio/" target="_blank">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
+      <a href="https://github.com/Antonio9194" target="_blank">
+        <i class="fa-brands fa-github-alt"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/vinciguerra-antonio/" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
     </div>
     <script>
-  document.getElementById('owner-link').addEventListener('click', function(event) {
-    event.preventDefault(); // stop default link action
-    
-    const password = prompt('Password:');
-    const correctPassword = 'Marvelous91';
-    
-    if (password === correctPassword) {
-      window.location.href = '/owner';
-    } else {
-      alert('Sorry, wrong password!');
-    }
-  });
-</script>
+      document.getElementById('owner-link').addEventListener('click', function (event) {
+        event.preventDefault(); // stop default link action
+
+        const password = prompt('Password:');
+        const correctPassword = 'Marvelous91';
+
+        if (password === correctPassword) {
+          window.location.href = '/owner';
+        } else {
+          alert('Sorry, wrong password!');
+        }
+      });
+    </script>
 </body>
+
 </html>
