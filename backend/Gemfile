@@ -6,4 +6,6 @@ ruby '3.3.5' # Use your Ruby version
 
 gem 'sinatra'
 gem 'rack'
+gem 'puma'
+gem 'rackup'
 gem 'json'
