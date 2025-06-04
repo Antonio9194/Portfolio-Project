@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require 'dotenv/load'
 require 'securerandom'
 require 'sinatra'
 require 'json'
 
 enable :sessions
+set :session_secret, ENV['SESSION_SECRET']
 
 set :public_folder, File.expand_path('../public', __FILE__)
 set :views, File.expand_path('views', __dir__)
@@ -30,7 +32,7 @@ get '/guest' do
 end
 
 post '/login' do
-  if params[:password] == 'Marvelous91'
+  if params[:password] == ENV['OWNER_PASSWORD']
     session[:authorized] = true
     redirect '/owner'
   else
