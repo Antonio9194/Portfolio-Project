@@ -18,14 +18,19 @@
   <header>
     <nav class="navbar">
       <h1>Antonio's Portfolio</h1>
+      <form id="login-form" action="/login" method="POST" style="display: inline;">
+        <div id="password-field" style="display: none;">
+          <input type="password" name="password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </div>
+        <button type="button" id="show-password">
+          <i class="fa-regular fa-user"></i>
+        </button>
+      </form>
     </nav>
   </header>
   <section id="login">
     <div class="login">
-      <form action="/login" method="POST" style="display: inline;">
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Owner</button>
-      </form>
       <a href="/set_guest">Guest</a>
     </div>
   </section>
@@ -39,6 +44,14 @@
         <i class="fa-brands fa-linkedin"></i>
       </a>
     </div>
-</body>
+    <script>
+  const toggleBtn = document.getElementById('show-password');
+  const passwordField = document.getElementById('password-field');
 
+  toggleBtn.addEventListener('click', () => {
+    passwordField.style.display = 'block';
+    toggleBtn.style.display = 'none';
+  });
+</script>
+</body>
 </html>
