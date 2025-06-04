@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+ruby '3.3.5' # Use your Ruby version
+
+gem 'sinatra'
+gem 'rack'
+gem 'json'
