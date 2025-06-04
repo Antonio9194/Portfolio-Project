@@ -1,0 +1,18 @@
+#owner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.owner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins";
+  padding: 20px;
+  border: 1px solid #97b7d7;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px -5px #97b7d7;
+}

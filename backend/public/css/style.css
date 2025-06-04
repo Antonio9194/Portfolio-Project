@@ -1,9 +1,10 @@
-@import url('conponents/navbar.css');
-@import url('conponents/hero.css');
-@import url('conponents/portfolio.css');
-@import url('conponents/about.css');
-@import url('conponents//footer.css');
-@import url('conponents/login.css');
+@import url('./components/navbar.css');
+@import url('./components/hero.css');
+@import url('./components/portfolio.css');
+@import url('./components/about.css');
+@import url('./components/footer.css');
+@import url('./components/login.css');
+@import url('./components/owner.css');
 
 /* Global layout settings */
 html, body {
