@@ -37,12 +37,6 @@
         <a href="#portfolio" class="cta-button">View My Work</a>
       </div>
     </section>
-    <section id="portfolio">
-      <div class="portfolio" class="container my-5">
-        <h2>Projects</h2>
-        <div id="projects-container" class="row text-center"></div>
-      </div>
-    </section>
     <section id="about">
       <div class="about">
         <img src="./images/avatar.jpg" alt="avatar picture">
@@ -56,28 +50,41 @@
           <li><i class="fa-solid fa-gamepad"></i> Gaming</li>
           <li><i class="fa-solid fa-dragon"></i> Anime</li>
           <li><i class="fa-solid fa-code"></i> Coding</li>
-        </ul>    </section>
+        </ul>
+    </section>
+    <section id="portfolio">
+      <div class="portfolio" class="container my-5">
+        <h2>Projects</h2>
+        <div id="projects-container" class="row text-center"></div>
+      </div>
+    </section>
   </main>
   <footer id="footer">
     <div class="footer">
       <p>&copy; 2025 | Antonio |</p>
-        <a href="https://github.com/Antonio9194" target="_blank">
-          <i class="fa-brands fa-github-alt"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/vinciguerra-antonio/" target="_blank">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
+      <a href="https://github.com/Antonio9194" target="_blank">
+        <i class="fa-brands fa-github-alt"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/vinciguerra-antonio/" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
     </div>
-
     <script>
-  const text = "Hey, I'm Antonio 👋";
+  const text = "Hey, I am Antonio";
+  const emoji = " 👋";
+  const typingElement = document.getElementById("typing");
   let index = 0;
 
   function type() {
     if (index < text.length) {
-      document.getElementById("typing").innerHTML += text.charAt(index);
+      typingElement.textContent += text.charAt(index);
       index++;
-      setTimeout(type, 100); // typing speed
+      setTimeout(type, 100);
+    } else {
+      // Once text is fully typed, add the waving emoji
+      setTimeout(() => {
+        typingElement.textContent += emoji;
+      }, 300); // short delay before the wave
     }
   }
 
@@ -88,28 +95,36 @@
     try {
       const response = await fetch('/projects');
       const projects = await response.json();
+
       const container = document.getElementById('projects-container');
-      container.innerHTML = '';
+      container.innerHTML = ''; // clear old projects
 
       projects.forEach(project => {
-        const projectHTML = `
-          <div class="col-md p-4 mb-4 rounded shadow-sm" style="background-color: #f9fbfd; border: 2px solid #97b7d7;">
-            <h4 style="color: #333;">${project.title}</h4>
-            <p>${project.description}</p>
-            ${project.link ? `<a href="${project.link}" target="_blank">View Project</a>` : ''}
+        // Create Bootstrap card inside a column
+        const col = document.createElement('div');
+        col.className = 'col-md-4 mb-4'; // 3 cards per row on medium screens
+
+        col.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${project.title}</h5>
+              <p class="card-text flex-grow-1">${project.description}</p>
+              <div>
+                ${project.link ? `<a href="${project.link}" target="_blank" class="btn btn-primary btn-sm me-2">Live Demo</a>` : ''}
+                ${project.github ? `<a href="${project.github}" target="_blank" class="btn btn-secondary btn-sm">GitHub</a>` : ''}
+              </div>
+            </div>
           </div>
         `;
-        container.insertAdjacentHTML('beforeend', projectHTML);
+
+        container.appendChild(col);
       });
-    } catch (err) {
-      console.error('Failed to load projects', err);
+    } catch (error) {
+      console.error('Error loading projects:', error);
     }
   }
 
-  window.onload = () => {
-    type();  // your existing typing animation
-    loadProjects();  // load projects dynamically
-  };
+  window.addEventListener('DOMContentLoaded', loadProjects);
 </script>
 </body>
 

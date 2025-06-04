@@ -5,6 +5,7 @@
 @import url('./components/footer.css');
 @import url('./components/login.css');
 @import url('./components/owner.css');
+@import url('./components/card.css');
 
 /* Global layout settings */
 html, body {
