@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.2.2' # Use your Ruby version
+ruby '3.3.5' # Use your Ruby version
 
 gem 'sinatra'
 gem 'rack'
