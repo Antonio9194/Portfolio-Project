@@ -27,9 +27,6 @@ set :session_secret, ENV['SESSION_SECRET']
 set :public_folder, File.expand_path('../public', __FILE__)
 set :views, File.expand_path('views', __dir__)
 
-# Temporary in-memory store
-projects = []
-
 get '/' do
   erb :index
 end

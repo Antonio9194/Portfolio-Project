@@ -90,42 +90,45 @@
 
   window.onload = type;
 </script>
-<script>
-  async function loadProjects() {
-    try {
-      const response = await fetch('/projects');
-      const projects = await response.json();
+async function loadProjects() {
+  try {
+    const response = await fetch('/projects');
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-      const container = document.getElementById('projects-container');
-      container.innerHTML = ''; // clear old projects
+    const projects = await response.json();
+    console.log('Fetched projects:', projects);
 
-      projects.forEach(project => {
-        // Create Bootstrap card inside a column
-        const col = document.createElement('div');
-        col.className = 'col-md-4 mb-4'; // 3 cards per row on medium screens
+    const container = document.getElementById('projects-container');
+    container.innerHTML = '';
 
-        col.innerHTML = `
-          <div class="card h-100 shadow-sm">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">${project.title}</h5>
-              <p class="card-text flex-grow-1">${project.description}</p>
-              <div>
-                ${project.link ? `<a href="${project.link}" target="_blank" class="btn btn-primary btn-sm me-2">Live Demo</a>` : ''}
-                ${project.github ? `<a href="${project.github}" target="_blank" class="btn btn-secondary btn-sm">GitHub</a>` : ''}
-              </div>
+    projects.forEach(project => {
+      const title = project.title || '(No title)';
+      const description = project.description || '(No description)';
+      const link = project.link || '';
+      const github = project.github || '';
+
+      const col = document.createElement('div');
+      col.className = 'col-md-4 mb-4';
+
+      col.innerHTML = `
+        <div class="card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">${title}</h5>
+            <p class="card-text flex-grow-1">${description}</p>
+            <div>
+              ${link ? `<a href="${link}" target="_blank" class="btn btn-primary btn-sm me-2">Live Demo</a>` : ''}
+              ${github ? `<a href="${github}" target="_blank" class="btn btn-secondary btn-sm">GitHub</a>` : ''}
             </div>
           </div>
-        `;
+        </div>
+      `;
 
-        container.appendChild(col);
-      });
-    } catch (error) {
-      console.error('Error loading projects:', error);
-    }
+      container.appendChild(col);
+    });
+  } catch (error) {
+    console.error('Error loading projects:', error);
   }
-
-  window.addEventListener('DOMContentLoaded', loadProjects);
-</script>
+}
 </body>
 
 </html>
