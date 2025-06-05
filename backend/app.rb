@@ -11,8 +11,22 @@ set :session_secret, ENV['SESSION_SECRET']
 set :public_folder, File.expand_path('../public', __FILE__)
 set :views, File.expand_path('views', __dir__)
 
+PROJECTS_FILE = 'projects.json'
+
+def load_projects
+  if File.exist?(PROJECTS_FILE)
+    JSON.parse(File.read(PROJECTS_FILE))
+  else
+    []
+  end
+end
+
+def save_projects(projects)
+  File.write(PROJECTS_FILE, JSON.pretty_generate(projects))
+end
+
 # Temporary in-memory store
-projects = []
+projects = load_projects
 
 get '/' do
   erb :index
@@ -65,6 +79,8 @@ post '/projects' do
   }
 
   projects << new_project
+  save_projects(projects)
+
   status 201
   new_project.to_json
 end
