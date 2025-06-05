@@ -7,6 +7,7 @@ require 'json'
 require 'sequel'
 
 DB = Sequel.connect(ENV['DATABASE_URL'])
+
 unless DB.table_exists?(:projects)
   DB.create_table :projects do
     primary_key :id
