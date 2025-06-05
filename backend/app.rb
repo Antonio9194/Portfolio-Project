@@ -4,6 +4,21 @@ require 'dotenv/load'
 require 'securerandom'
 require 'sinatra'
 require 'json'
+require 'sequel'
+
+DB = Sequel.connect(ENV['DATABASE_URL'])
+unless DB.table_exists?(:projects)
+  DB.create_table :projects do
+    primary_key :id
+    String :title, null: false
+    String :description, text: true, null: false
+    String :link
+    String :github
+  end
+end
+
+class Project < Sequel::Model(:projects)
+end
 
 enable :sessions
 set :session_secret, ENV['SESSION_SECRET']
@@ -11,22 +26,8 @@ set :session_secret, ENV['SESSION_SECRET']
 set :public_folder, File.expand_path('../public', __FILE__)
 set :views, File.expand_path('views', __dir__)
 
-PROJECTS_FILE = 'projects.json'
-
-def load_projects
-  if File.exist?(PROJECTS_FILE)
-    JSON.parse(File.read(PROJECTS_FILE))
-  else
-    []
-  end
-end
-
-def save_projects(projects)
-  File.write(PROJECTS_FILE, JSON.pretty_generate(projects))
-end
-
 # Temporary in-memory store
-projects = load_projects
+projects = []
 
 get '/' do
   erb :index
@@ -59,28 +60,24 @@ get '/owner' do
   erb :owner
 end
 
-# API to get all projects (for guest page)
+# Get all projects
 get '/projects' do
   content_type :json
-  projects.to_json
+  Project.all.to_a.to_json
 end
 
-# API to add a new project (for owner page)
+# Add a new project
 post '/projects' do
   request.body.rewind
   data = JSON.parse(request.body.read)
 
-  new_project = {
-    id: SecureRandom.uuid,
+  project = Project.create(
     title: data['title'],
     description: data['description'],
     link: data['link'],
     github: data['github']
-  }
-
-  projects << new_project
-  save_projects(projects)
+  )
 
   status 201
-  new_project.to_json
+  project.to_json
 end
