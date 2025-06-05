@@ -61,7 +61,7 @@ end
 # Get all projects
 get '/projects' do
   content_type :json
-  Project.all.to_a.to_json
+  Project.all.map(&:values).to_json
 end
 
 # Add a new project

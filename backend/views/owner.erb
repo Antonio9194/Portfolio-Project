@@ -35,8 +35,8 @@
   <header>
     <nav class="navbar">
       <h1>Antonio's Portfolio</h1>
-      <div
-        <a href="#footer">Links</a>
+      <div>
+        <a href="#portfolio">Projects</a>
         <a href="/">Logout</a>
       </div>
     </nav>
@@ -77,6 +77,12 @@
       </div>
     </form>
   </div>
+  <section id="portfolio">
+      <div class="portfolio" class="container my-5">
+        <h2>Projects</h2>
+        <div id="projects-container" class="row text-center"></div>
+      </div>
+    </section>
   <footer id="footer">
     <div class="footer">
       <p>&copy; 2025 | Antonio |</p>
@@ -87,6 +93,50 @@
         <i class="fa-brands fa-linkedin"></i>
       </a>
     </div>
+    <script>
+  async function loadProjects() {
+    try {
+      const response = await fetch('/projects');
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+      const projects = await response.json();
+      console.log('Fetched projects:', projects);
+
+      const container = document.getElementById('projects-container');
+      container.innerHTML = '';
+
+      projects.forEach(project => {
+        const title = project.title || '(No title)';
+        const description = project.description || '(No description)';
+        const link = project.link || '';
+        const github = project.github || '';
+
+        const col = document.createElement('div');
+        col.className = 'col-md-4 mb-4';
+
+        col.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${title}</h5>
+              <p class="card-text flex-grow-1">${description}</p>
+              <div>
+                ${link ? `<a href="${link}" target="_blank" class="btn btn-primary btn-sm me-2">Live Demo</a>` : ''}
+                ${github ? `<a href="${github}" target="_blank" class="btn btn-secondary btn-sm">GitHub</a>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(col);
+      });
+    } catch (error) {
+      console.error('Error loading projects:', error);
+    }
+  }
+
+  // Call the function once DOM content is loaded
+  window.addEventListener('DOMContentLoaded', loadProjects);
+</script>
     <script>
       document.getElementById("add-project-form").addEventListener("submit", async function (event) {
         event.preventDefault();
