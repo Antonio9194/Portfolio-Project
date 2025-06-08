@@ -18,7 +18,13 @@
   <header>
     <nav class="navbar">
       <h1>Antonio's Portfolio</h1>
-      <form id="login-form" action="/login" method="POST" style="display: inline;">
+      <div>
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#portfolio">Projects</a>
+        <a href="#footer">Links</a>
+        <a href="/">Logout</a>
+        <form id="login-form" action="/login" method="POST" style="display: inline;">
         <div id="password-field" style="display: none;">
           <input type="password" name="password" placeholder="Password" required>
           <button type="submit">Login</button>
@@ -27,13 +33,41 @@
           <i class="fa-regular fa-user"></i>
         </button>
       </form>
+      </div>
     </nav>
   </header>
-  <section id="login">
-    <div class="login">
-      <a href="/set_guest">Guest</a>
-    </div>
-  </section>
+  <main>
+    <section id="hero">
+      <div class="hero">
+        <h2 id="typing"></h2>
+        <h5>Full Stack Web Developer based in Tokyo</h5>
+        <h5>Crafting clean, functional and elegant web experiences</h5>
+        </p>
+        <a href="#portfolio" class="cta-button">View My Work</a>
+      </div>
+    </section>
+    <section id="about">
+      <div class="about">
+        <img src="./images/avatar.jpg" alt="avatar picture">
+        <h3>About Me</h3>
+        <hr>
+        <h4>Born and raised in Italy</h4>
+        <h4>Lived between China and Japan for over 8 years</h4>
+        <h4>Passioned about programming</h4>
+        <h3>Hobbies</h3>
+        <ul>
+          <li><i class="fa-solid fa-gamepad"></i> Gaming</li>
+          <li><i class="fa-solid fa-dragon"></i> Anime</li>
+          <li><i class="fa-solid fa-code"></i> Coding</li>
+        </ul>
+    </section>
+    <section id="portfolio">
+      <div class="portfolio" class="container my-5">
+        <h2>Projects</h2>
+        <div id="projects-container" class="row text-center"></div>
+      </div>
+    </section>
+  </main>
   <footer id="footer">
     <div class="footer">
       <p>&copy; 2025 | Antonio |</p>
@@ -45,6 +79,27 @@
       </a>
     </div>
     <script>
+  const text = "Hey, I am Antonio";
+  const emoji = " 👋";
+  const typingElement = document.getElementById("typing");
+  let index = 0;
+
+  function type() {
+    if (index < text.length) {
+      typingElement.textContent += text.charAt(index);
+      index++;
+      setTimeout(type, 100);
+    } else {
+      // Once text is fully typed, add the waving emoji
+      setTimeout(() => {
+        typingElement.textContent += emoji;
+      }, 300); // short delay before the wave
+    }
+  }
+
+  window.onload = type;
+</script>
+<script>
   const toggleBtn = document.getElementById('show-password');
   const passwordField = document.getElementById('password-field');
 
@@ -53,5 +108,50 @@
     toggleBtn.style.display = 'none';
   });
 </script>
+<script>
+  async function loadProjects() {
+    try {
+      const response = await fetch('/projects');
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+      const projects = await response.json();
+      console.log('Fetched projects:', projects);
+
+      const container = document.getElementById('projects-container');
+      container.innerHTML = '';
+
+      projects.forEach(project => {
+        const title = project.title || '(No title)';
+        const description = project.description || '(No description)';
+        const link = project.link || '';
+        const github = project.github || '';
+
+        const col = document.createElement('div');
+        col.className = 'col-md-4 mb-4';
+
+        col.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${title}</h5>
+              <p class="card-text flex-grow-1">${description}</p>
+              <div>
+                ${link ? `<a href="${link}" target="_blank" class="btn btn-primary btn-sm me-2">Live Demo</a>` : ''}
+                ${github ? `<a href="${github}" target="_blank" class="btn btn-secondary btn-sm">GitHub</a>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(col);
+      });
+    } catch (error) {
+      console.error('Error loading projects:', error);
+    }
+  }
+
+  // Call the function once DOM content is loaded
+  window.addEventListener('DOMContentLoaded', loadProjects);
+</script>
 </body>
+
 </html>

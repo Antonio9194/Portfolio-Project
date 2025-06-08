@@ -31,11 +31,6 @@ get '/' do
   erb :index
 end
 
-get '/set_guest' do
-  session[:allowed_guest] = true
-  redirect '/guest'
-end
-
 get '/guest' do
   if session[:allowed_guest]
     erb :guest
