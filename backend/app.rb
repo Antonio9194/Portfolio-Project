@@ -13,6 +13,7 @@ unless DB.table_exists?(:projects)
     primary_key :id
     String :title, null: false
     String :description, text: true, null: false
+    String :languages
     String :link
     String :github
   end
@@ -67,6 +68,7 @@ post '/projects' do
   project = Project.create(
     title: data['title'],
     description: data['description'],
+    languages: data['languages'],
     link: data['link'],
     github: data['github']
   )
