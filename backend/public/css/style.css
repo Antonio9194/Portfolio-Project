@@ -1,13 +1,13 @@
-@import url('./components/navbar.css');
-@import url('./components/hero.css');
-@import url('./components/portfolio.css');
-@import url('./components/about.css');
-@import url('./components/footer.css');
-@import url('./components/login.css');
-@import url('./components/owner.css');
-@import url('./components/card.css');
-@import url('./components/loginform.css');
-@import url('./components/tech.css');
+@import url('/css/components/navbar.css');
+@import url('/css/components/hero.css');
+@import url('/css/components/portfolio.css');
+@import url('/css/components/about.css');
+@import url('/css/components/footer.css');
+@import url('/css/components/login.css');
+@import url('/css/components/owner.css');
+@import url('/css/components/card.css');
+@import url('/css/components/loginform.css');
+@import url('/css/components/tech.css');
 
 /* Global layout settings */
 html, body {
