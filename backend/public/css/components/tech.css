@@ -1,0 +1,45 @@
+#tech {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech {
+  width: 1200px;
+  margin: 50px;
+  padding: 20px;
+  border: 1px solid #97b7d7;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px -5px #97b7d7;
+}
+
+.tech h2 {
+  font-family: 'Poppins';
+  font-size: 1.3rem;
+  padding: 10px;
+  text-align: center;
+}
+
+.icon-stack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.tech img {
+  width: 50px;
+  height: auto;
+  margin: 0 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  padding: 4px;
+  border: 1px solid #97b7d7;
+}
+
+.tech img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}

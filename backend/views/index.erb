@@ -19,11 +19,9 @@
     <nav class="navbar">
       <h1>Antonio's Portfolio</h1>
       <div>
-        <a href="#hero">Home</a>
         <a href="#about">About</a>
-        <a href="#portfolio">Projects</a>
+        <a href="#footer">Tech</a>
         <a href="#footer">Links</a>
-        <a href="/">Logout</a>
         <form id="login-form" action="/login" method="POST" style="display: inline;">
         <div id="password-field" style="display: none;">
           <input type="password" name="password" placeholder="Password" required>
@@ -41,9 +39,8 @@
       <div class="hero">
         <h2 id="typing"></h2>
         <h5>Full Stack Web Developer based in Tokyo</h5>
-        <h5>Crafting clean, functional and elegant web experiences</h5>
         </p>
-        <a href="#portfolio" class="cta-button">View My Work</a>
+        <a href="#portfolio" class="cta-button">Projects</a>
       </div>
     </section>
     <section id="about">
@@ -65,6 +62,22 @@
       <div class="portfolio" class="container my-5">
         <h2>Projects</h2>
         <div id="projects-container" class="row text-center"></div>
+      </div>
+    </section>
+    <section id="tech">
+      <div class="tech">
+        <h2>Tech Stack</h2>
+        <div class="icon-stack">
+          <img src="./images/html-5.png" alt="html logo">
+          <img src="./images/css-3.png" alt="html logo">
+          <img src="./images/ruby.png" alt="html logo">
+          <img src="./images/postgre.png" alt="html logo">
+          <img src="./images/sqlite.svg" alt="html logo">
+          <img src="./images/postman.svg" alt="html logo">
+          <img src="./images/node.svg" alt="html logo">
+          <img src="./images/js.svg" alt="html logo">
+          <img src="./images/bootstrap.svg" alt="html logo">
+        </div>
       </div>
     </section>
   </main>
@@ -135,7 +148,9 @@
   <div class="card-body d-flex flex-column">
     <h5 class="card-title">${title}</h5>
     <p class="card-text flex-grow-1">${description}</p>
-    ${languages ? `<h6 class="mt-2 text-muted">Languages: ${languages}</h6>` : ''}
+    ${languages ? `<div class="language-tag mt-2">${
+  languages.split(/[,\s]+/).map(lang => `<span class="language-pill">${lang.trim()}</span>`).join('')
+}</div>` : ''}
     <div>
       ${link ? `<a href="${link}" target="_blank" class="btn btn-primary btn-sm me-2">Live Demo</a>` : ''}
       ${github ? `<a href="${github}" target="_blank" class="btn btn-secondary btn-sm">GitHub</a>` : ''}

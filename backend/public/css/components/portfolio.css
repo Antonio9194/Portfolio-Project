@@ -18,3 +18,33 @@
   padding: 10px;
   text-align: center;
 }
+
+#projects-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.language-tag {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 22px;
+}
+
+.language-pill {
+  background-color: #97b7d7;
+  color: white;
+  padding: 2px 4px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.language-pill:hover {
+  background-color: #6c9ec9;
+  border: 1px solid #97b7d7;
+}
